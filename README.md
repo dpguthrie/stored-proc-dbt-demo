@@ -13,7 +13,7 @@ Contrast that with a stored procedure approach, which does things in a sequentia
 2. Run a dbt command and output to json.  The command should run a good portion of your project (or even all of it!).  The more you run, the more cost savings that you'll be able to demonstrate.
 
 ```bash
-dbt --log-format json run -s +fct_order_items+
+dbt --log-format json build -s +fct_order_items+
 ```
 
 **Note the time it took to run this command - you'll need it later to compare to the stored procedure!**
