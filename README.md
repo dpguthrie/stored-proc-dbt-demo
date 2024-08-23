@@ -18,7 +18,7 @@ dbt --log-format json run -s +fct_order_items+
 
 **Note the time it took to run this command - you'll need it later to compare to the stored procedure!**
 
-3. Run the script in this repo:
+3. Run the script in this repo from the root of your dbt project:
 
 ```bash
 python log_to_proc.py
