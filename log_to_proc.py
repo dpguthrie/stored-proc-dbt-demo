@@ -29,6 +29,16 @@ def remove_comments(input_string):
     return re.sub(pattern, "", input_string, flags=re.DOTALL)
 
 
+def is_sql_query(obj):
+    is_sql = "sql" in obj["data"].keys()
+    is_node = (
+        "node_info" in obj["data"].keys()
+        and obj["data"]["node_info"]["resource_type"] in ["model", "test", "snapshot"]
+        and obj["data"]["node_info"]["node_status"] != "compiling"
+    )
+    return is_sql and is_node
+
+
 if __name__ == "__main__":
     objects = []
     with open(READ_PATH, "r") as f:
@@ -38,12 +48,11 @@ if __name__ == "__main__":
             except Exception:
                 print("error with line: " + line)
             else:
-                if "sql" in obj["data"].keys():
+                if is_sql_query(obj):
                     sql = remove_comments(obj["data"]["sql"])
                     if sql[-1] != ";":
                         sql += ";"
-                    if not sql.strip().startswith("show"):
-                        objects.append(sql)
+                    objects.append(sql)
 
     with open(WRITE_PATH, "w") as f:
         f.write(str(BEGINNING_STORED_PROC))
