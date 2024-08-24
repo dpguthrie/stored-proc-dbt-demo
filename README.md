@@ -10,10 +10,10 @@ Contrast that with a stored procedure approach, which does things in a sequentia
 
 1. Delete your log file (if it exists).  This will be found at `logs/dbt.log` unless you've changed the configuration within your `dbt_project.yml` file.
 
-2. Run a dbt command and output to json.  The command should run a good portion of your project (or even all of it!).  The more you run, the more cost savings that you'll be able to demonstrate.
+2. Run a dbt command.  The command should run a good portion of your project (or even all of it!).  The more you run, the more cost savings that you'll be able to demonstrate.
 
 ```bash
-dbt --log-format json build -s +fct_order_items+
+dbt build -s +fct_order_items+
 ```
 
 **Note the time it took to run this command - you'll need it later to compare to the stored procedure!**
