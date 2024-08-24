@@ -24,7 +24,13 @@ dbt build -s +fct_order_items+
 python log_to_proc.py
 ```
 
-4. Copy/paste the code output to `stored_proc.sql` into your Snowflake Editor and execute all of the statements.  Take note of the time it takes to run your stored procedure.
+If you've changed the location of your log file, pass that as a flag when running the script:
+
+```bash
+python log_to_proc.py --log-path my_logs/dbt.log
+```
+
+4. Copy/paste the code output from `stored_proc.sql` into your Snowflake Editor and execute all of the statements.  Take note of the time it takes to run your stored procedure.
 
 **The output to the .sql file contains code to set the `USE_CACHED_RESULT` to `FALSE` so that the stored procedure is run without any of the cached results from the prior dbt run.**
 
